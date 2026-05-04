@@ -1,7 +1,6 @@
 export const LINKS = {
   bizbox: "https://www.bizboxstory.com/",
   instagram: "https://instagram.com/sayitlikeshay",
-  hercules: "https://shaymehta.onhercules.app/#connect",
 };
 
 export const HERO = {

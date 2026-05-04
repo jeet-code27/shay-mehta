@@ -151,14 +151,6 @@ export function ContactSection() {
                       <span className="font-bold text-base group-hover:text-accent transition-colors">@sayitlikeshay</span>
                     </a>
                   </li>
-                  <li>
-                    <a href={LINKS.hercules} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
-                      <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center border-2 border-foreground group-hover:scale-110 transition-transform">
-                        <LinkIcon className="w-4 h-4 text-white" />
-                      </div>
-                      <span className="font-bold text-base group-hover:text-accent transition-colors">Connect on Hercules</span>
-                    </a>
-                  </li>
                 </ul>
 
                 <hr className="my-6 border-foreground/10 border-2 border-dashed" />
