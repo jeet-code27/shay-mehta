@@ -1,0 +1,19 @@
+:root {
+  --background:        #FFFDF5;
+  --foreground:        #1E293B;
+  --muted:             #F1F5F9;
+  --muted-foreground:  #64748B;
+  --accent:            #8B5CF6;
+  --accent-foreground: #FFFFFF;
+  --secondary:         #F472B6;
+  --tertiary:          #FBBF24;
+  --quaternary:        #34D399;
+  --border:            #E2E8F0;
+  --card:              #FFFFFF;
+  --radius-sm:         8px;
+  --radius-md:         16px;
+  --radius-lg:         24px;
+  --shadow-pop:        4px 4px 0px 0px #1E293B;
+  --shadow-pop-hover:  6px 6px 0px 0px #1E293B;
+  --shadow-pop-active: 2px 2px 0px 0px #1E293B;
+}
