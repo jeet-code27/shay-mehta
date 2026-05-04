@@ -27,6 +27,12 @@ export const STATS = [
   { value: "90 Days", label: "Average ROI Target", color: "pink" }
 ];
 
+export const RESULTS = {
+  stat: "+127%",
+  subline: "Average Organic Traffic Growth Across Clients",
+  cta: { label: "Build Your Growth Engine", url: "#contact" }
+};
+
 export const MARQUEE_TEXT = "SEO · AI SEO · Google Ads · Facebook Ads · Content Marketing · Brand Strategy · Lead Generation · Google Business Profile · Social Media Management · Website Design · ";
 
 export const ABOUT = {
