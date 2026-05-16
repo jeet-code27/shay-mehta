@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion"
 import { Download, ArrowLeft, CheckCircle2, BookOpen, Clock, Users, Star, ArrowRight } from "lucide-react"
 import { Badge } from "@/components/ui/Badge"
 import { SectionLabel } from "@/components/ui/SectionLabel"
+import { Navbar } from "@/components/layout/Navbar"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -24,9 +25,9 @@ const forWhoItems = [
   "You are 40, 50, 60+ and tired of tech guides that assume you already know everything.",
   "You have thought this is not for me — and some part of you suspects that is not actually true.",
   "You want to understand AI without being sold a course, a subscription, or a tech-bro lifestyle.",
-  "You follow @sayitlikeshay because you trust straight talk — and you want the same from your information about AI.",
+  <>You follow <a href="https://www.instagram.com/sayitlikeshay/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors underline decoration-2 underline-offset-2 font-bold text-foreground">@sayitlikeshay</a> because you trust straight talk — and you want the same from your information about AI.</>,
 ]
-const forWhoStrong = [null, "40, 50, 60+", null, null, "@sayitlikeshay"]
+const forWhoStrong = [null, "40, 50, 60+", null, null, null]
 
 /* ─── Small animated section wrapper ─── */
 function FadeIn({
@@ -216,27 +217,9 @@ function BottomForm() {
 export function ClaudeGuidePage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <Navbar />
 
-      {/* ── Minimal Navbar ── */}
-      <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b-2 border-foreground py-4">
-        <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 group">
-            <ArrowLeft className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors" />
-            <span className="font-heading text-xl font-extrabold text-foreground">Shay Mehta</span>
-            <span className="w-2.5 h-2.5 rounded-full bg-accent inline-block" />
-          </Link>
-          <a
-            href="#get-guide"
-            className="hidden sm:inline-flex items-center gap-2 bg-secondary border-2 border-foreground text-foreground font-bold text-sm px-5 py-2.5 rounded-full shadow-pop-pink hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_0px_#1E293B] transition-all"
-            style={{ transitionTimingFunction: "cubic-bezier(0.34,1.56,0.64,1)", transitionDuration: "250ms" }}
-          >
-            <Download className="w-4 h-4" />
-            Get the free guide →
-          </a>
-        </div>
-      </header>
-
-      <main className="flex-1">
+      <main className="flex-1 mt-20">
 
         {/* ═══ HERO ═══ */}
         <section className="relative pt-20 pb-24 overflow-hidden bg-foreground" id="top">
@@ -263,7 +246,9 @@ export function ClaudeGuidePage() {
               >
                 <div className="flex flex-wrap gap-3">
                   <Badge color="pink">Free Guide · 2026 Edition</Badge>
-                  <Badge color="yellow">@sayitlikeshay</Badge>
+                  <a href="https://www.instagram.com/sayitlikeshay/" target="_blank" rel="noopener noreferrer" className="inline-block hover:-translate-y-1 transition-transform">
+                    <Badge color="yellow">@sayitlikeshay</Badge>
+                  </a>
                 </div>
 
                 <h1 className="font-heading text-5xl sm:text-6xl font-extrabold text-white leading-[1.08] tracking-tight">
@@ -337,7 +322,7 @@ export function ClaudeGuidePage() {
         <div className="bg-secondary border-y-2 border-foreground py-4 text-center">
           <p className="font-bold text-foreground text-sm tracking-wide">
             <strong>Free. Instant. No credit card.</strong>{" "}
-            — Written by @sayitlikeshay for real people, not tech enthusiasts.
+            — Written by <a href="https://www.instagram.com/sayitlikeshay/" target="_blank" rel="noopener noreferrer" className="text-secondary hover:text-white transition-colors underline decoration-2 underline-offset-4">@sayitlikeshay</a> for real people, not tech enthusiasts.
           </p>
         </div>
 
@@ -392,7 +377,7 @@ export function ClaudeGuidePage() {
                 const colors = ["bg-accent", "bg-secondary", "bg-tertiary", "bg-quaternary", "bg-secondary"]
                 const strongWord = forWhoStrong[i]
                 let displayText: React.ReactNode = item
-                if (strongWord) {
+                if (strongWord && typeof item === "string") {
                   const parts = item.split(strongWord)
                   displayText = (
                     <>
@@ -435,7 +420,7 @@ export function ClaudeGuidePage() {
                     They are left behind because nobody thought to explain it to them properly. I made this guide to fix that —
                     for my audience, in my voice, with no patience for unnecessary complexity."
                   </p>
-                  <p className="mt-6 font-bold text-foreground/70 text-base relative z-10">— Shay, @sayitlikeshay</p>
+                  <p className="mt-6 font-bold text-foreground/70 text-base relative z-10">— Shay, <a href="https://www.instagram.com/sayitlikeshay/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors underline decoration-2 underline-offset-2">@sayitlikeshay</a></p>
                 </div>
               </div>
             </FadeIn>
@@ -551,7 +536,7 @@ export function ClaudeGuidePage() {
       {/* ── Footer ── */}
       <footer className="bg-foreground border-t-2 border-white/10 py-8 text-center">
         <p className="text-white/40 text-sm">
-          2026 @sayitlikeshay ·{" "}
+          2026 <a href="https://www.instagram.com/sayitlikeshay/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">@sayitlikeshay</a> ·{" "}
           <a
             href="https://instagram.com/sayitlikeshay"
             target="_blank"

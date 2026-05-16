@@ -13,8 +13,39 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Shay Mehta | Personal Portfolio",
-  description: "30+ Years in Sales & Marketing. Now Building Real Digital Growth for SMEs.",
+  metadataBase: new URL("https://www.shaymehta.com"),
+  title: {
+    default: "Shay Mehta | Personal Portfolio",
+    template: "%s | Shay Mehta",
+  },
+  description: "30+ Years in Sales & Marketing. Now Building Real Digital Growth for SMEs. I help businesses scale through powerful systems, automation, and modern marketing.",
+  keywords: ["Shay Mehta", "Digital Growth", "SME Marketing", "Sales Strategies", "Business Automation", "AI Workflows", "Claude AI Guide"],
+  authors: [{ name: "Shay Mehta" }],
+  creator: "Shay Mehta",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.shaymehta.com",
+    title: "Shay Mehta | Personal Portfolio",
+    description: "30+ Years in Sales & Marketing. Now Building Real Digital Growth for SMEs.",
+    siteName: "Shay Mehta",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shay Mehta | Personal Portfolio",
+    description: "30+ Years in Sales & Marketing. Now Building Real Digital Growth for SMEs.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({

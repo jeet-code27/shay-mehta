@@ -20,10 +20,11 @@ export function Navbar() {
   }, [])
 
   const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Results", href: "#results" },
-    { name: "Contact", href: "#contact" },
+    { name: "About", href: "/#about" },
+    { name: "Services", href: "/#services" },
+    { name: "Results", href: "/#results" },
+    { name: "Contact", href: "/#contact" },
+    { name: "Free Claude Guide", href: "/claude-guide" },
   ]
 
   return (
@@ -58,7 +59,7 @@ export function Navbar() {
 
         {/* CTA */}
         <div className="hidden md:block">
-          <Link href="#contact" tabIndex={-1}>
+          <Link href="/#contact" tabIndex={-1}>
             <Button variant="primary">Let's Talk</Button>
           </Link>
         </div>
@@ -93,7 +94,7 @@ export function Navbar() {
                 </Link>
               ))}
               <div className="mt-4">
-                <Link href="#contact" tabIndex={-1} onClick={() => setIsOpen(false)}>
+                <Link href="/#contact" tabIndex={-1} onClick={() => setIsOpen(false)}>
                   <Button variant="primary" className="w-full">Let's Talk</Button>
                 </Link>
               </div>
