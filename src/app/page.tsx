@@ -9,6 +9,7 @@ import { AgencyStorySection } from "@/components/sections/AgencyStorySection"
 import { ServicesSection } from "@/components/sections/ServicesSection"
 import { ClientsSection } from "@/components/sections/ClientsSection"
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection"
+import { EbookSection } from "@/components/sections/EbookSection"
 import { ContactSection } from "@/components/sections/ContactSection"
 
 export default function Home() {
@@ -25,6 +26,7 @@ export default function Home() {
         <ServicesSection />
         <ClientsSection />
         <TestimonialsSection />
+        <EbookSection />
         <ContactSection />
       </main>
       <Footer />
