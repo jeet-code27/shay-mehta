@@ -56,10 +56,38 @@ function FadeIn({
 /* ─── Email Form ─── */
 function GuideForm({ dark = false }: { dark?: boolean }) {
   const [state, setState] = React.useState<"idle" | "loading" | "done">("idle")
+  const [name, setName] = React.useState("")
+  const [email, setEmail] = React.useState("")
 
-  function handleSubmit() {
+  async function handleSubmit() {
+    if (!email) return;
     setState("loading")
-    setTimeout(() => setState("done"), 1400)
+    
+    try {
+      const params = new URLSearchParams()
+      params.append("name", name)
+      params.append("email", email)
+      params.append("source", "Hero Form")
+      
+      const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || ""
+      if (scriptUrl) {
+        await fetch(scriptUrl, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: params.toString(),
+        })
+      } else {
+        // Fallback delay if no URL is set yet
+        await new Promise(r => setTimeout(r, 1400))
+      }
+    } catch (err) {
+      console.error(err)
+    }
+    
+    setState("done")
   }
 
   const inputBase = "w-full px-4 py-3 rounded-xl border-2 outline-none transition-colors font-body text-base"
@@ -74,12 +102,18 @@ function GuideForm({ dark = false }: { dark?: boolean }) {
       <input
         type="text"
         placeholder="First name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
         className={`${inputBase} ${dark ? inputDark : inputLight}`}
+        disabled={state !== "idle"}
       />
       <input
         type="email"
         placeholder="Email address"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
         className={`${inputBase} ${dark ? inputDark : inputLight}`}
+        disabled={state !== "idle"}
       />
       <button
         onClick={handleSubmit}
@@ -104,9 +138,76 @@ function GuideForm({ dark = false }: { dark?: boolean }) {
           </>
         )}
       </button>
-      <p className={`text-xs text-center ${dark ? "text-white/30" : "text-muted-foreground"}`}>
+      <p className={`text-xs text-center font-bold mt-1 ${dark ? "text-tertiary" : "text-tertiary"}`}>
+        Note: Please ensure your email is correct as the free guide will be sent there.
+      </p>
+      <p className={`text-xs text-center mt-1 ${dark ? "text-white/30" : "text-muted-foreground"}`}>
         No spam. No newsletter you did not ask for. Just the guide.
       </p>
+    </div>
+  )
+}
+
+/* ─── Bottom CTA Form ─── */
+function BottomForm() {
+  const [state, setState] = React.useState<"idle" | "loading" | "done">("idle")
+  const [email, setEmail] = React.useState("")
+
+  async function handleSubmit() {
+    if (!email) return;
+    setState("loading")
+    
+    try {
+      const params = new URLSearchParams()
+      params.append("name", "") // No name in bottom form
+      params.append("email", email)
+      params.append("source", "Bottom CTA Form")
+      
+      const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || ""
+      if (scriptUrl) {
+        await fetch(scriptUrl, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: params.toString(),
+        })
+      } else {
+        await new Promise(r => setTimeout(r, 1400))
+      }
+    } catch (err) {
+      console.error(err)
+    }
+    
+    setState("done")
+  }
+
+  if (state === "done") {
+    return (
+      <div className="flex items-center justify-center gap-3 bg-quaternary border-2 border-foreground rounded-full px-6 py-4 shadow-[4px_4px_0px_0px_#1E293B] font-bold text-foreground">
+        <CheckCircle2 className="w-5 h-5" /> Check your inbox! 🎉
+      </div>
+    )
+  }
+
+  return (
+    <div className="flex gap-0">
+      <input
+        type="email"
+        placeholder="Your email address"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        disabled={state === "loading"}
+        className="flex-1 px-5 py-4 rounded-l-full border-2 border-r-0 border-foreground bg-white text-foreground text-base outline-none font-body placeholder:text-muted-foreground disabled:opacity-70"
+      />
+      <button 
+        onClick={handleSubmit}
+        disabled={state === "loading" || !email}
+        className="px-6 py-4 rounded-r-full border-2 border-foreground bg-foreground text-white font-bold text-base whitespace-nowrap hover:bg-foreground/80 transition-colors flex items-center gap-2 disabled:opacity-70"
+      >
+        {state === "loading" ? "Sending..." : <>Send it <ArrowRight className="w-4 h-4" /></>}
+      </button>
     </div>
   )
 }
@@ -341,6 +442,70 @@ export function ClaudeGuidePage() {
           </div>
         </section>
 
+        {/* ═══ PREMIUM BUNDLE UPSELL ═══ */}
+        <section className="py-24 bg-background" id="premium-bundle">
+          <div className="container mx-auto px-4 md:px-6">
+            <FadeIn className="flex flex-col items-center text-center mb-16">
+              <SectionLabel color="mint">Level Up</SectionLabel>
+              <h2 className="mt-4 font-heading text-4xl sm:text-5xl font-extrabold text-foreground leading-tight">
+                Want to build faster with AI?<br />
+                <span className="text-muted-foreground">Get the Premium Bundle.</span>
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
+                If you are interested in taking things to the next level, our premium bundle is built for people who actually want to save time, automate better, and stop guessing what prompts work.
+              </p>
+            </FadeIn>
+
+            <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-card border-2 border-foreground rounded-3xl shadow-pop p-8 md:p-12 hover:-translate-y-1 transition-transform duration-300" style={{ transitionTimingFunction: "cubic-bezier(0.34,1.56,0.64,1)" }}>
+              <div className="flex flex-col gap-6">
+                <div>
+                  <h3 className="font-heading text-3xl font-extrabold text-foreground mb-2">Claude Prompt Pack</h3>
+                  <div className="flex items-center gap-3 mt-3">
+                    <span className="font-heading text-3xl font-extrabold text-accent">₹499</span>
+                    <span className="text-muted-foreground line-through text-lg font-bold">₹1499</span>
+                    <Badge color="pink">Special Offer</Badge>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-4 mt-2">
+                  {[
+                    "200+ high-performing Claude prompts",
+                    "Advanced Claude workflow guides",
+                    "Claude Artifacts guide",
+                    "Ready-to-use prompt library for creators, marketers & builders"
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <div className="min-w-6 h-6 rounded-full bg-mint border-2 border-foreground flex items-center justify-center text-xs font-bold text-foreground mt-0.5">✓</div>
+                      <p className="font-bold text-foreground text-sm leading-relaxed">{item}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="pt-4">
+                  <a 
+                    href="https://swagcentralindia.myshopify.com/products/claude-prompt-pack-200-premium-ai-prompts-latest-2026-edition-ready-to-use-claude-ai-prompt-collection"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-secondary border-2 border-foreground text-foreground font-bold text-base px-8 py-4 rounded-full shadow-pop-pink hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_0px_#1E293B] active:shadow-pop-active active:translate-x-0 active:translate-y-0 transition-all"
+                    style={{ transitionTimingFunction: "cubic-bezier(0.34,1.56,0.64,1)", transitionDuration: "250ms" }}
+                  >
+                    Get the Bundle Now <ArrowRight className="w-5 h-5" />
+                  </a>
+                </div>
+              </div>
+
+              <div className="relative w-full aspect-square md:aspect-auto md:h-full bg-muted border-2 border-foreground rounded-2xl overflow-hidden shadow-inner flex items-center justify-center group">
+                <div className="absolute inset-0 bg-gradient-to-tr from-secondary/20 to-accent/20 transition-opacity duration-500 group-hover:opacity-70" />
+                <div className="text-center z-10 p-6 flex flex-col items-center">
+                  <div className="text-7xl mb-6 group-hover:scale-110 transition-transform duration-500">🚀</div>
+                  <h4 className="font-heading text-2xl font-extrabold text-foreground bg-white px-4 py-2 border-2 border-foreground rounded-xl shadow-pop-yellow rotate-[-2deg]">2026 Edition</h4>
+                  <p className="text-foreground font-bold text-sm mt-4 bg-white/80 px-4 py-1.5 rounded-full border border-foreground/10">Instant Access • Lifetime Updates</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ═══ BOTTOM CTA ═══ */}
         <section className="py-24 bg-accent relative overflow-hidden" id="bottom-cta">
           <div
@@ -362,16 +527,10 @@ export function ClaudeGuidePage() {
               </p>
 
               <div className="mt-10 w-full max-w-md flex flex-col gap-3">
-                <div className="flex">
-                  <input
-                    type="email"
-                    placeholder="Your email address"
-                    className="flex-1 px-5 py-4 rounded-l-full border-2 border-r-0 border-foreground bg-white text-foreground text-base outline-none font-body placeholder:text-muted-foreground"
-                  />
-                  <button className="px-6 py-4 rounded-r-full border-2 border-foreground bg-foreground text-white font-bold text-base whitespace-nowrap hover:bg-foreground/80 transition-colors flex items-center gap-2">
-                    Send it <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
+                <BottomForm />
+                <p className="text-xs text-center font-bold text-tertiary mt-1">
+                  Note: Please ensure your email is correct as the free guide will be sent there.
+                </p>
                 <p className="text-white/40 text-xs text-center">Free forever. No credit card. Unsubscribe any time.</p>
               </div>
 
