@@ -24,20 +24,20 @@ const InstagramIcon = ({ className }: { className?: string }) => (
 
 const INSTA_POSTS = [
   {
-    src: "/images/insta1.png",
-    alt: "Instagram Post 1",
+    src: "/images/1.png",
+    alt: "Shay Mehta Instagram Followers Growth - Proof & Analytics (@sayitlikeshay)",
     rotation: "-rotate-3",
     color: "bg-tertiary",
   },
   {
-    src: "/images/insta2.png",
-    alt: "Instagram Post 2",
+    src: "/images/2.png",
+    alt: "Digital Marketing Results & Follower Scale - Shay Mehta Case Study",
     rotation: "rotate-2",
     color: "bg-secondary",
   },
   {
-    src: "/images/insta3.png",
-    alt: "Instagram Post 3",
+    src: "/images/3.png",
+    alt: "Instagram Organic Reach & Growth Metrics by Shay Mehta - BizBox Story",
     rotation: "-rotate-2",
     color: "bg-accent",
   },

@@ -65,13 +65,24 @@ function GuideForm({ dark = false }: { dark?: boolean }) {
     setState("loading")
     
     try {
-      const params = new URLSearchParams()
-      params.append("name", name)
-      params.append("email", email)
-      params.append("source", "Hero Form")
-      
+      // 1. Send email notification via Resend
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name || "Guide Requester",
+          email,
+          source: "Claude Guide - Hero Form",
+        }),
+      }).catch((e) => console.error("Resend notification error:", e))
+
+      // 2. Also keep Google Sheets backup if configured
       const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || ""
       if (scriptUrl) {
+        const params = new URLSearchParams()
+        params.append("name", name)
+        params.append("email", email)
+        params.append("source", "Hero Form")
         await fetch(scriptUrl, {
           method: "POST",
           mode: "no-cors",
@@ -79,10 +90,7 @@ function GuideForm({ dark = false }: { dark?: boolean }) {
             "Content-Type": "application/x-www-form-urlencoded",
           },
           body: params.toString(),
-        })
-      } else {
-        // Fallback delay if no URL is set yet
-        await new Promise(r => setTimeout(r, 1400))
+        }).catch((e) => console.error("Sheet error:", e))
       }
     } catch (err) {
       console.error(err)
@@ -159,13 +167,24 @@ function BottomForm() {
     setState("loading")
     
     try {
-      const params = new URLSearchParams()
-      params.append("name", "") // No name in bottom form
-      params.append("email", email)
-      params.append("source", "Bottom CTA Form")
-      
+      // 1. Send email notification via Resend
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: "Guide Requester",
+          email,
+          source: "Claude Guide - Bottom CTA Form",
+        }),
+      }).catch((e) => console.error("Resend notification error:", e))
+
+      // 2. Also keep Google Sheets backup if configured
       const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || ""
       if (scriptUrl) {
+        const params = new URLSearchParams()
+        params.append("name", "")
+        params.append("email", email)
+        params.append("source", "Bottom CTA Form")
         await fetch(scriptUrl, {
           method: "POST",
           mode: "no-cors",
@@ -173,9 +192,7 @@ function BottomForm() {
             "Content-Type": "application/x-www-form-urlencoded",
           },
           body: params.toString(),
-        })
-      } else {
-        await new Promise(r => setTimeout(r, 1400))
+        }).catch((e) => console.error("Sheet error:", e))
       }
     } catch (err) {
       console.error(err)
@@ -444,7 +461,7 @@ export function ClaudeGuidePage() {
             <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-card border-2 border-foreground rounded-3xl shadow-pop p-8 md:p-12 hover:-translate-y-1 transition-transform duration-300" style={{ transitionTimingFunction: "cubic-bezier(0.34,1.56,0.64,1)" }}>
               <div className="flex flex-col gap-6">
                 <div>
-                  <h3 className="font-heading text-3xl font-extrabold text-foreground mb-2">Claude Prompt Pack</h3>
+                  <h3 className="font-heading text-3xl font-extrabold text-foreground mb-2">The Ultimate Claude Bundle</h3>
                   <div className="flex items-center gap-3 mt-3">
                     <span className="font-heading text-3xl font-extrabold text-accent">₹499</span>
                     <span className="text-muted-foreground line-through text-lg font-bold">₹1499</span>
@@ -454,10 +471,10 @@ export function ClaudeGuidePage() {
 
                 <div className="flex flex-col gap-4 mt-2">
                   {[
-                    "200+ high-performing Claude prompts",
-                    "Advanced Claude workflow guides",
-                    "Claude Artifacts guide",
-                    "Ready-to-use prompt library for creators, marketers & builders"
+                    "2,000+ high-performing Claude skills & prompts",
+                    "107+ autonomous Claude agents & workflows",
+                    "50+ production-ready AI projects",
+                    "Ready-to-use library for creators, marketers & builders"
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
                       <div className="min-w-6 h-6 rounded-full bg-mint border-2 border-foreground flex items-center justify-center text-xs font-bold text-foreground mt-0.5">✓</div>
@@ -468,7 +485,7 @@ export function ClaudeGuidePage() {
 
                 <div className="pt-4">
                   <a 
-                    href="https://swagcentralindia.myshopify.com/products/claude-prompt-pack-200-premium-ai-prompts-latest-2026-edition-ready-to-use-claude-ai-prompt-collection"
+                    href="https://swagcentral.in/product/the-ultimate-claude-bundle-2000-skills-107-agents-50-projects-499/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-secondary border-2 border-foreground text-foreground font-bold text-base px-8 py-4 rounded-full shadow-pop-pink hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_0px_#1E293B] active:shadow-pop-active active:translate-x-0 active:translate-y-0 transition-all"

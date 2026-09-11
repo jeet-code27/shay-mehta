@@ -31,12 +31,50 @@ const InstagramIcon = ({ className }: { className?: string }) => (
 export function ContactSection() {
   const ref = React.useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-50px" })
-  const [status, setStatus] = React.useState<"idle" | "success">("idle")
+  const [status, setStatus] = React.useState<"idle" | "loading" | "success" | "error">("idle")
+  const [errorMessage, setErrorMessage] = React.useState("")
+  const [formData, setFormData] = React.useState({
+    name: "",
+    email: "",
+    company: "",
+    message: "",
+  })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.id]: e.target.value }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setStatus("success")
-    setTimeout(() => setStatus("idle"), 5000)
+    setStatus("loading")
+    setErrorMessage("")
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          source: "Main Portfolio Contact Form",
+        }),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        throw new Error(data.error || "Something went wrong. Please try again.")
+      }
+
+      setStatus("success")
+      setFormData({ name: "", email: "", company: "", message: "" })
+      setTimeout(() => setStatus("idle"), 8000)
+    } catch (err: unknown) {
+      console.error(err)
+      setStatus("error")
+      setErrorMessage(err instanceof Error ? err.message : "Failed to send message.")
+    }
   }
 
   return (
@@ -64,6 +102,9 @@ export function ContactSection() {
                   type="text"
                   id="name"
                   required
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="e.g. Rahul Sharma"
                   className="bg-white border-2 border-foreground rounded-lg px-4 py-3 outline-none transition-all focus:-translate-y-1 focus:shadow-pop-pink"
                 />
               </div>
@@ -73,6 +114,9 @@ export function ContactSection() {
                   type="email"
                   id="email"
                   required
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="you@company.com"
                   className="bg-white border-2 border-foreground rounded-lg px-4 py-3 outline-none transition-all focus:-translate-y-1 focus:shadow-pop-yellow"
                 />
               </div>
@@ -81,6 +125,9 @@ export function ContactSection() {
                 <input
                   type="text"
                   id="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  placeholder="Brand or Agency Name"
                   className="bg-white border-2 border-foreground rounded-lg px-4 py-3 outline-none transition-all focus:-translate-y-1 focus:shadow-pop"
                 />
               </div>
@@ -90,21 +137,39 @@ export function ContactSection() {
                   id="message"
                   required
                   rows={4}
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell us about your brand, goals, or upcoming launch..."
                   className="bg-white border-2 border-foreground rounded-lg px-4 py-3 outline-none transition-all focus:-translate-y-1 focus:shadow-pop-active resize-none"
                 ></textarea>
               </div>
 
               <div className="mt-2">
-                <Button type="submit" variant="primary" className="w-full sm:w-auto" showArrow>
-                  {status === "success" ? "Message Sent!" : "Send Message"}
+                <Button
+                  type="submit"
+                  variant="primary"
+                  className="w-full sm:w-auto"
+                  disabled={status === "loading"}
+                  showArrow={status !== "loading"}
+                >
+                  {status === "loading"
+                    ? "Sending Message..."
+                    : status === "success"
+                    ? "Message Sent! 🎉"
+                    : "Send Message"}
                 </Button>
                 <p className="mt-3 text-sm font-bold text-muted-foreground">
                   Free 30-minute strategy session. No obligation.
                 </p>
                 {status === "success" && (
-                  <p className="mt-2 text-sm font-bold text-quaternary">
-                    Thanks for reaching out. We'll be in touch soon!
-                  </p>
+                  <div className="mt-3 p-3 bg-quaternary border-2 border-foreground rounded-lg font-bold text-foreground">
+                    Thanks for reaching out! Your message has been delivered. We'll be in touch soon!
+                  </div>
+                )}
+                {status === "error" && (
+                  <div className="mt-3 p-3 bg-secondary/30 border-2 border-foreground rounded-lg font-bold text-secondary-foreground">
+                    {errorMessage || "Failed to send message. Please try again or email directly."}
+                  </div>
                 )}
               </div>
             </form>
@@ -126,7 +191,7 @@ export function ContactSection() {
                   <div className="relative w-14 h-14 rounded-full border-2 border-foreground overflow-hidden bg-quaternary">
                     <Image
                       src="/images/shay-mehta.jpeg"
-                      alt="Contact Shay Mehta"
+                      alt="Contact Shay Mehta - Digital Growth & Marketing Consultant"
                       fill
                       className="object-cover"
                       sizes="56px"

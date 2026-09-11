@@ -46,7 +46,7 @@ export function AgencyStorySection() {
             <div className="mt-10 relative w-full max-w-[280px] aspect-[4/5] rounded-2xl border-4 border-foreground shadow-pop overflow-hidden rotate-[-2deg] hover:rotate-0 transition-transform duration-300">
               <Image 
                 src="/images/shay-mehta-about.jpeg" 
-                alt="Shay Mehta"
+                alt="Shay Mehta - Founder of BizBox Story & Digital Growth Consultant"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 400px"
