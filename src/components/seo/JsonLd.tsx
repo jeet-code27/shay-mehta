@@ -22,6 +22,7 @@ export function JsonLd() {
       "https://www.bizboxstory.com/",
     ],
     knowsAbout: [
+      "AI Tools & Claude",
       "US Market Expansion & American Consumer Psychology",
       "Cross-Border Digital Growth (US & India)",
       "Search Engine Optimization (SEO)",
@@ -32,6 +33,18 @@ export function JsonLd() {
       "B2B and B2C Sales Systems",
       "Lead Generation",
       "Brand Positioning",
+    ],
+    hasCredential: [
+      {
+        "@type": "EducationalOccupationalCredential",
+        name: "AI Tools & Claude Workshop Certificate of Completion",
+        credentialCategory: "Certificate",
+        recognizedBy: {
+          "@type": "Organization",
+          name: "be10X",
+        },
+        url: "https://shaymehta.com/ai-tool-certificate.pdf",
+      },
     ],
   }
 

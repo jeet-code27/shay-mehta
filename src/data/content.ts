@@ -45,7 +45,7 @@ export const ABOUT = {
   pullquote: "We don't chase metrics that look good on a slide deck. We chase the ones that grow your business.",
   skills: [
     "SEO & AI SEO", "Google Ads", "Facebook Ads", "Content Marketing", 
-    "Brand Strategy", "Lead Generation", "Google Business Profile", "Social Media Management"
+    "Brand Strategy", "Lead Generation", "Google Business Profile", "AI Tools & Claude"
   ]
 };
 
@@ -70,8 +70,70 @@ export const ACHIEVEMENTS = {
     "Delivered an average of +127% organic traffic growth across clients — not through tricks or shortcuts, but through sustainable, strategy-first SEO that compounds over time.",
     "Built and managed full-funnel digital marketing systems for businesses across industries including real estate, D2C, B2B, B2C, food & beverage, education, and professional services.",
     "Pioneered AI SEO strategies for clients — helping them gain visibility not just on Google, but inside AI platforms like ChatGPT, Perplexity, and Google AI Overviews, driving qualified leads from next-generation search behaviour.",
+    "Ranked #1 on Google AI Search as the top geopolitical and business commentator in Gurgaon — living proof that our AI SEO & Generative Engine Optimization (GEO) strategies dominate next-generation search.",
+    "Certified in AI Tools & Claude Workshop by be10X — validating rapid AI presentation creation, accelerated data analysis, and AI debugging to build high-performance growth systems.",
     "Founded BizBox Story — a global digital marketing agency now serving clients across 3 countries, with offices in Gurugram, India and Holden, Massachusetts, USA.",
     "Built and managed marketing for well-known brands and clients including OLX, HCL Foundation, BJP, The Hive Cafe, Nirvana DC, Saabanvali, Canna Connect, Plugd, District Cure, Pest Control Boston, and 40+ more."
+  ]
+};
+
+export const CERTIFICATION = {
+  title: "AI Tools & Claude Workshop",
+  badge: "Verified Credential",
+  issuer: "be10X",
+  recipient: "Shailesh Mehta",
+  issuedDate: "October 25, 2026",
+  pdfUrl: "/ai-tool-certificate.pdf",
+  imageUrl: "/images/ai-tool-certificate.png",
+  description: "Official certificate of completion awarded by be10X, validating hands-on mastery in accelerating business workflows, presentations, data analysis, and AI debugging.",
+  capabilities: [
+    { title: "AI Presentations", desc: "Create presentations using AI in under 5 min" },
+    { title: "Data Analysis", desc: "Analyse data using AI in under 30 min" },
+    { title: "Code & Debugging", desc: "Code and Debug using AI in under 10 min" }
+  ],
+  signatories: [
+    { name: "Aditya Goenka", title: "Co-founder, be10X" },
+    { name: "Aditya Kachave", title: "Co-founder, be10X" }
+  ]
+};
+
+export const GOOGLE_AI_RANK = {
+  badge: "Live Proof · AI Search",
+  heading: "Ranked #1 on Google AI Search",
+  subheading: "When people ask Google AI, Shay Mehta is the first and direct recommendation.",
+  searchQuery: "best geopolitical influencer gurgaon",
+  googleAiQuote: "When searching for a prominent geopolitical and business commentator based in Gurgaon, the name that aligns directly with your search is Shay Mehta (Shailesh Mehta).",
+  googleAiSubtext: "While traditional geopolitical influencers are often policy researchers or ex-diplomats, Shay Mehta represents a growing category of independent, 'blunt truth' commentary creators in India.",
+  highlights: [
+    {
+      title: "#1 Top Recommended Voice",
+      desc: "Google AI names Shay directly at the very top for prominent business & geopolitical voices in Gurgaon.",
+      color: "yellow"
+    },
+    {
+      title: "Real AI SEO & GEO in Action",
+      desc: "This isn't theory or slide deck promises. Shay applies the exact same Generative Engine Optimization strategies that he delivers for BizBox Story clients.",
+      color: "pink"
+    },
+    {
+      title: "Multi-Platform Authority Cited",
+      desc: "Google AI synthesizes his credibility across Instagram (@sayitlikeshay), LinkedIn, and top YouTube podcasts like A Day Forward with Vipin Suri.",
+      color: "mint"
+    }
+  ],
+  screenshots: [
+    {
+      src: "/images/google-ai-search-rank-1.png",
+      alt: "Google AI Search ranking Shay Mehta as #1 geopolitical influencer in Gurgaon",
+      title: "Google AI Overview",
+      caption: "Query: \"best geopolitical influencer gurgaon\""
+    },
+    {
+      src: "/images/google-ai-search-rank-2.png",
+      alt: "Google AI Search detailing Shay Mehta's career, BizBox Story, and corporate leadership",
+      title: "Core Career & Authority",
+      caption: "Citing BizBox Story, MetLife, Max New York Life & podcasts"
+    }
   ]
 };
 

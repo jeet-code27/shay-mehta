@@ -336,10 +336,18 @@ export function ClaudeGuidePage() {
         </section>
 
         {/* ── Proof Bar ── */}
-        <div className="bg-secondary border-y-2 border-foreground py-4 text-center">
-          <p className="font-bold text-foreground text-sm tracking-wide">
-            <strong>Free. Instant. No credit card.</strong>{" "}
-            — Written by <a href="https://www.instagram.com/sayitlikeshay/" target="_blank" rel="noopener noreferrer" className="text-secondary hover:text-white transition-colors underline decoration-2 underline-offset-4">@sayitlikeshay</a> for real people, not tech enthusiasts.
+        <div className="bg-secondary border-y-2 border-foreground py-4 text-center px-4">
+          <p className="font-bold text-foreground text-sm tracking-wide flex flex-wrap items-center justify-center gap-2">
+            <span><strong>Free. Instant. No credit card.</strong> — Written by <a href="https://www.instagram.com/sayitlikeshay/" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-white transition-colors underline decoration-2 underline-offset-4">@sayitlikeshay</a> for real people, not tech enthusiasts.</span>
+            <span className="hidden sm:inline text-foreground/40">•</span>
+            <a
+              href="/ai-tool-certificate.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 bg-white text-foreground text-xs font-extrabold px-3 py-1 rounded-full border border-foreground shadow-[2px_2px_0px_0px_#1E293B] hover:-translate-y-0.5 transition-transform"
+            >
+              🏆 be10X AI Tools & Claude Certified ↗
+            </a>
           </p>
         </div>
 
@@ -437,7 +445,17 @@ export function ClaudeGuidePage() {
                     They are left behind because nobody thought to explain it to them properly. I made this guide to fix that —
                     for my audience, in my voice, with no patience for unnecessary complexity."
                   </p>
-                  <p className="mt-6 font-bold text-foreground/70 text-base relative z-10">— Shay, <a href="https://www.instagram.com/sayitlikeshay/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors underline decoration-2 underline-offset-2">@sayitlikeshay</a></p>
+                  <div className="mt-6 pt-4 border-t border-foreground/15 flex flex-wrap items-center justify-between gap-3 relative z-10">
+                    <p className="font-bold text-foreground/80 text-base">— Shay, <a href="https://www.instagram.com/sayitlikeshay/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors underline decoration-2 underline-offset-2">@sayitlikeshay</a></p>
+                    <a
+                      href="/ai-tool-certificate.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold bg-white text-foreground px-3.5 py-1.5 rounded-full border-2 border-foreground shadow-[2px_2px_0px_0px_#1E293B] hover:-translate-y-0.5 transition-transform"
+                    >
+                      🏆 Official AI Tools & Claude Certified ↗
+                    </a>
+                  </div>
                 </div>
               </div>
             </FadeIn>

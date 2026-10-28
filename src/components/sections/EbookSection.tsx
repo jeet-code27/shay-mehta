@@ -118,7 +118,14 @@ export function EbookSection() {
             <div className="flex flex-wrap gap-3">
               <Badge color="pink">2026 Edition</Badge>
               <Badge color="yellow">Plain English</Badge>
-              <Badge color="mint">No Spam</Badge>
+              <a
+                href="/ai-tool-certificate.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 hover:opacity-90 transition-opacity"
+              >
+                <Badge color="mint">✓ be10X AI Certified</Badge>
+              </a>
             </div>
 
             {/* Title + desc */}
@@ -171,7 +178,18 @@ export function EbookSection() {
                 "The people who get left behind by technology aren't left behind because they're not smart enough.
                 They're left behind because nobody thought to explain it to them properly."
               </p>
-              <p className="mt-2 font-bold text-secondary text-sm">— Shay, @sayitlikeshay</p>
+              <div className="mt-2 flex flex-wrap items-center gap-2">
+                <p className="font-bold text-secondary text-sm">— Shay, @sayitlikeshay</p>
+                <span className="text-white/40 text-xs">•</span>
+                <a
+                  href="/ai-tool-certificate.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-white/70 hover:text-white underline underline-offset-2 inline-flex items-center gap-1"
+                >
+                  Verified AI & Claude Credential ↗
+                </a>
+              </div>
             </div>
 
             {/* CTA Button */}

@@ -12,6 +12,7 @@ import { TestimonialsSection } from "@/components/sections/TestimonialsSection"
 import { EbookSection } from "@/components/sections/EbookSection"
 import { ContactSection } from "@/components/sections/ContactSection"
 import { InstagramSection } from "@/components/sections/InstagramSection"
+import { GoogleAiRankSection } from "@/components/sections/GoogleAiRankSection"
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <StatsSection />
         <AboutSection />
         <InstagramSection />
+        <GoogleAiRankSection />
         <WhySection />
         <AchievementsSection />
         <AgencyStorySection />

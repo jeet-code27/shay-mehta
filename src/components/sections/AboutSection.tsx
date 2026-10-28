@@ -42,6 +42,23 @@ export function AboutSection() {
                 "{ABOUT.pullquote}"
               </p>
             </div>
+
+            <div className="flex flex-wrap items-center gap-3 pt-2">
+              <a
+                href="#ai-ranking"
+                className="inline-flex items-center gap-2 bg-white text-foreground text-xs sm:text-sm font-extrabold px-4 py-2 rounded-full border-2 border-foreground shadow-[2px_2px_0px_0px_#1E293B] hover:-translate-y-0.5 hover:bg-tertiary transition-all"
+              >
+                <span>🤖 Ranked #1 on Google AI Search</span>
+                <span className="text-accent font-black">→</span>
+              </a>
+              <a
+                href="#certifications"
+                className="inline-flex items-center gap-2 bg-white text-foreground text-xs sm:text-sm font-extrabold px-4 py-2 rounded-full border-2 border-foreground shadow-[2px_2px_0px_0px_#1E293B] hover:-translate-y-0.5 hover:bg-secondary/30 transition-all"
+              >
+                <span>🏆 be10X AI Tools Certified</span>
+                <span className="text-accent font-black">↗</span>
+              </a>
+            </div>
           </motion.div>
 
           {/* Right Visuals */}
